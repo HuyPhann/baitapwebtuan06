@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css\style.css">
+</head>
+<body>
+    <div id="display">
+        <span id="minute">00</span>
+        <span>:</span>
+        <span id="second">00</span>
+        <span>:</span>
+        <span id="milisecond">00</span>
+    </div>
+
+    <div id="btarea">
+        <button class="bt" id="stop">Stop</button>
+        <button class="bt" id="start">Start</button>
+        <button class="bt" id="reset">Reset</button>
+    </div>
+
+    <script>
+        var minute=document.getElementById('minute');
+        var second=document.getElementById('second');
+        var milisecond=document.getElementById('milisecond');
+        var start=document.getElementById('start');
+        var stop=document.getElementById('stop');
+        var reset=document.getElementById('reset');
+
+        var i=0;
+        var j=0;
+        var k=0;
+        var timer;
+
+        start.onclick=()=>{
+            timer=setInterval(() => {
+                milisecond.innerText=i++;
+                if(i==100){
+                    i=0;
+                    second.innerText=++j;
+                    milisecond.innerText=i;
+                    if(j==60){
+                        j=0;
+                        minute.innerText=++k;
+                        second.innerText=j;
+                    }
+                }
+            }, 10);
+  
+        }
+
+        stop.onclick=()=>{
+            if(timer !==null) {
+                clearInterval(timer);
+            }
+        }
+
+        reset.onclick=()=>{
+            clearInterval(timer);
+            i=0;
+            j=0;
+            k=0;
+            document.getElementById('minute').innerText="00";
+            document.getElementById('second').innerText="00";
+            document.getElementById('milisecond').innerText="00";
+        }
+    </script>
+</body>
+</html>
